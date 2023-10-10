@@ -1,0 +1,18 @@
+type Continent {
+  name: String!
+  code: String!
+}
+
+type Country {
+  id: Int!
+  code: String!
+  name: String!
+  emoji: String!
+  phone: String!
+  continent: Continent!
+}
+
+type Query {
+  countries: [Country!]
+  countryById(id: Int!): Country
+}
