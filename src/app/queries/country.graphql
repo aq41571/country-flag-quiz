@@ -1,0 +1,11 @@
+fragment Country on Country {
+  id
+  name
+  emoji
+}
+
+query Countries {
+  countries {
+    ...Country
+  }
+}
