@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+
 import { ReactNode } from 'react'
 import { ApolloWrapper } from './ApolloWrapper'
-
-const inter = Inter({ subsets: ['latin'] })
+import { ThemeRegistry } from './ThemeRegistry/ThemeRegistry'
+import { roboto } from './ThemeRegistry/font'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -12,8 +12,13 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: { children: ReactNode }) => (
   <html lang="en">
-    <body className={inter.className}>
-      <ApolloWrapper>{children}</ApolloWrapper>
+    <head>
+      <meta name="viewport" content="initial-scale=1, width=device-width" />
+    </head>
+    <body className={roboto.className}>
+      <ApolloWrapper>
+        <ThemeRegistry>{children}</ThemeRegistry>
+      </ApolloWrapper>
     </body>
   </html>
 )
