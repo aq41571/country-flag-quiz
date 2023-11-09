@@ -12,7 +12,29 @@ type Country {
   continent: Continent!
 }
 
+type Correct {
+  isCorrect: Boolean!
+  correct: Country!
+}
+
+type QuestionBody {
+  emoji: String!
+}
+
+type Option {
+  id: Int!
+  name: String!
+}
+
+type Question {
+  question: QuestionBody!
+  options: [Option!]
+}
+
 type Query {
   countries: [Country!]
   countryById(id: Int!): Country
+  countryByEmoji(emoji: String!): Country
+  questions(limit: Int!, doneIds: [Int!]): [Question!]
+  checkAnswer(quizEmoji: String!, answerId: Int!): Correct!
 }
