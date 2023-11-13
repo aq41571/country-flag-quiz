@@ -1,9 +1,12 @@
 import type { Metadata } from 'next'
 
 import { ReactNode } from 'react'
+
 import { ApolloWrapper } from './ApolloWrapper'
 import { ThemeRegistry } from './ThemeRegistry/ThemeRegistry'
 import { roboto } from './ThemeRegistry/font'
+import { AppBar } from './components/AppBar/AppBar'
+import { Foundation } from './components/Foundation/Foundation'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -17,7 +20,10 @@ const RootLayout = ({ children }: { children: ReactNode }) => (
     </head>
     <body className={roboto.className}>
       <ApolloWrapper>
-        <ThemeRegistry>{children}</ThemeRegistry>
+        <ThemeRegistry>
+          <AppBar />
+          <Foundation>{children}</Foundation>
+        </ThemeRegistry>
       </ApolloWrapper>
     </body>
   </html>
