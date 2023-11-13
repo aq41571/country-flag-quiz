@@ -1,11 +1,44 @@
+fragment Continent on Continent {
+  name
+  code
+}
+
 fragment Country on Country {
   id
+  code
   name
+  emoji
+  phone
+  continent {
+    ...Continent
+  }
+}
+
+fragment Option on Option {
+  id
+  name
+}
+
+fragment QuestionBody on QuestionBody {
   emoji
 }
 
-query Countries {
-  countries {
-    ...Country
+query questions($limit: Int!, $doneIds: [Int!]) {
+  questions(limit: $limit, doneIds: $doneIds) {
+    question {
+      ...QuestionBody
+    }
+    options {
+      ...Option
+    }
+  }
+}
+
+query checkAnswer($quizEmoji: String!, $answerId: Int!) {
+  checkAnswer(quizEmoji: $quizEmoji, answerId: $answerId) {
+    isCorrect
+    correct {
+      ...Country
+    }
   }
 }
