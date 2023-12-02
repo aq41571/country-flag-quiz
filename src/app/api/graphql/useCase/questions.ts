@@ -1,4 +1,4 @@
-import { Correct, Country, Option, Question } from '@/generated/graphql'
+import { CheckAnswerResult, Country, Option, Question } from '@/generated/graphql'
 import { filterOutSelectedCountries, getCountries, getCountryByEmoji, getCountryById } from '../boundary/boundaries'
 import { shuffle } from './utils'
 
@@ -21,8 +21,8 @@ export const createQuestions = (length: number, done: number[]): Question[] => {
   return questions
 }
 
-export const isCorrect = (emoji: string, id: number): Correct => {
+export const getAnswerWithCorrect = (emoji: string, id: number): CheckAnswerResult => {
   const answer = getCountryById(id)
   const correct = getCountryByEmoji(emoji)
-  return { isCorrect: correct.id === answer.id, correct }
+  return { correct, answer }
 }

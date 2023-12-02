@@ -1,4 +1,4 @@
-import { Correct, InputMaybe, Question } from '@/generated/graphql'
+import { CheckAnswerResult, InputMaybe, Question } from '@/generated/graphql'
 import {
   getCountries,
   getCountryByEmoji,
@@ -7,7 +7,7 @@ import {
   getCountryIds,
 } from '../boundary/boundaries'
 import { validateEmoji, validateId, validateLimit } from '../validator/validators'
-import { createQuestions, isCorrect } from './questions'
+import { createQuestions, getAnswerWithCorrect } from './questions'
 
 export const listCountries = () => getCountries()
 export const fetchCountryById = (id: number) => getCountryById(id)
@@ -17,8 +17,8 @@ export const listQuestions = (limit: number, doneIds: InputMaybe<number[]> | und
   const validLength = validateLimit(limit, getCountryIds())
   return createQuestions(validLength, done)
 }
-export const fetchCorrect = (emoji: string, id: number): Correct => {
+export const fetchCorrect = (emoji: string, id: number): CheckAnswerResult => {
   const validEmoji = validateEmoji(emoji, getCountryEmojis())
   const validId = validateId(id, getCountryIds())
-  return isCorrect(validEmoji, validId)
+  return getAnswerWithCorrect(validEmoji, validId)
 }
