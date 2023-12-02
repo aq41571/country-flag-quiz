@@ -8,13 +8,9 @@ import { OptionCard } from './OptionCard/OptionCard'
 import { Result } from './Result/Result'
 import { useQuestions } from './hooks'
 
-interface QuizProps {
-  step: number
-}
-
-export const Quiz: FC<QuizProps> = ({ step }) => {
-  const { length, questions, answers, resetAll } = useQuizStore()
-  const { isLoading, error } = useQuestions(step)
+export const Quiz: FC = () => {
+  const { step, length, questions, answers, resetAll } = useQuizStore()
+  const { isLoading, error } = useQuestions()
   const reset = () => resetAll()
 
   return (

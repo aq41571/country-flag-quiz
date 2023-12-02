@@ -14,8 +14,8 @@ interface UseQuestionsReturn {
   error: ApolloError | undefined
 }
 
-export const useQuestions = (step: number): UseQuestionsReturn => {
-  const { length, setQuestions, resetAnswers, resetQuestions } = useQuizStore()
+export const useQuestions = (): UseQuestionsReturn => {
+  const { step, length, setQuestions, resetAnswers, resetQuestions } = useQuizStore()
   const {
     data,
     loading,

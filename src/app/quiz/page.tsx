@@ -15,7 +15,7 @@ const QuizPage = () => {
     <main>
       <Step current={step} stepNo={1} title="Menu" menu={step1Menu} />
       <Step current={step} stepNo={2} title="Choose Questions" menu={step2Menu} />
-      {step === 3 && <Quiz step={step} />}
+      {step === 3 && <Quiz />}
     </main>
   )
 }
