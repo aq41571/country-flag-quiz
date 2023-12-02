@@ -36,8 +36,10 @@ query questions($limit: Int!, $doneIds: [Int!]) {
 
 query checkAnswer($quizEmoji: String!, $answerId: Int!) {
   checkAnswer(quizEmoji: $quizEmoji, answerId: $answerId) {
-    isCorrect
     correct {
+      ...Country
+    }
+    answer {
       ...Country
     }
   }
