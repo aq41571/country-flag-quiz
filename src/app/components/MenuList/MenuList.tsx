@@ -1,7 +1,7 @@
 'use client'
 
+import ArrowRightIcon from '@mui/icons-material/ArrowRight'
 import { Menu } from '@/app/quiz/types'
-import InboxIcon from '@mui/icons-material/Inbox'
 
 import { List, ListItem, ListItemButton, ListItemIcon, ListItemText, Paper } from '@mui/material'
 import { FC } from 'react'
@@ -12,12 +12,10 @@ interface QuizMenuProps {
 
 export const MenuList: FC<QuizMenuProps> = ({ menu }) => (
   <List>
-    {menu.map(({ id, onClick, disabled, label }) => (
+    {menu.map(({ id, onClick, disabled, label, icon }) => (
       <ListItem key={id}>
         <ListItemButton component={Paper} onClick={onClick} disabled={disabled}>
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
+          <ListItemIcon sx={{ minWidth: 40 }}>{icon ?? <ArrowRightIcon />}</ListItemIcon>
           <ListItemText primary={label} />
         </ListItemButton>
       </ListItem>

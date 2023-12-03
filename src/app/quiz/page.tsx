@@ -1,8 +1,8 @@
 'use client'
 
 import { Quiz } from '../components/Quiz/Quiz'
-import { useQuizStore } from '../state'
 import { TitleWithMenu } from '../components/TitleWithMenu/TitleWithMenu'
+import { useQuizStore } from '../state'
 import { useMenu } from './hooks'
 
 const QuizPage = () => {
