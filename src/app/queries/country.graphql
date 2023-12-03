@@ -44,3 +44,9 @@ query checkAnswer($quizEmoji: String!, $answerId: Int!) {
     }
   }
 }
+
+query countries {
+  countries {
+    ...Country
+  }
+}
