@@ -24,16 +24,14 @@ export type Correct = LocalCountry
 export type Answer = LocalCountry
 
 interface QuizState {
-  step: number
-  length: number
+  length: number | null
   questions: LocalQuestion[]
   answers: Answer[]
   corrects: Correct[]
 }
 
 interface QuizAction {
-  setStep: (by: number) => void
-  setLength: (num: number) => void
+  setLength: (num: number | null) => void
   setQuestions: (questions: LocalQuestion[]) => void
   addAnswer: (answer: Answer) => void
   addCorrent: (correct: Correct) => void
@@ -47,19 +45,17 @@ type QuizStore = QuizState & QuizAction
 export const useQuizStore = create<QuizStore>()(
   middlewares(
     set => ({
-      step: 1,
-      length: 1,
+      length: null,
       questions: [],
       answers: [],
       corrects: [],
-      setStep: num => set(() => ({ step: num })),
       setLength: num => set(() => ({ length: num })),
       setQuestions: (questions: LocalQuestion[]) => set(() => ({ questions })),
       addAnswer: (answer: Answer) => set(prev => ({ answers: [...prev.answers, answer] })),
       addCorrent: (correct: Correct) => set(prev => ({ corrects: [...prev.corrects, correct] })),
       resetQuestions: () => set(() => ({ questions: [] })),
       resetAnswers: () => set(() => ({ answers: [] })),
-      resetAll: () => set(() => ({ step: 1, length: 1, questions: [], answers: [], corrects: [] })),
+      resetAll: () => set(() => ({ length: null, questions: [], answers: [], corrects: [] })),
     }),
     'stepStore',
   ),

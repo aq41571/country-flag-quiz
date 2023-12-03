@@ -23,7 +23,7 @@ const Home = () => (
           </Typography>
         </Grid2>
         <Grid2 xs={12} my={4} container justifyContent="center">
-          <Link href="/quiz" passHref style={{ width: '100%', maxWidth: 600 }}>
+          <Link href="/menu" passHref style={{ width: '100%', maxWidth: 600 }}>
             <Button variant="contained" fullWidth>
               Dive In!
             </Button>

@@ -15,14 +15,14 @@ interface UseQuestionsReturn {
 }
 
 export const useQuestions = (): UseQuestionsReturn => {
-  const { step, length, setQuestions, resetAnswers, resetQuestions } = useQuizStore()
+  const { length, setQuestions, resetAnswers, resetQuestions } = useQuizStore()
   const {
     data,
     loading,
     error: err,
   } = useQuestionsQuery({
-    variables: { limit: length },
-    skip: step !== 3,
+    variables: { limit: length ?? 1 },
+    skip: length === null,
     fetchPolicy: 'network-only',
   })
   useEffect(() => {

@@ -10,7 +10,7 @@ interface QuizMenuProps {
   menu: Menu[]
 }
 
-export const QuizMenu: FC<QuizMenuProps> = ({ menu }) => (
+export const MenuList: FC<QuizMenuProps> = ({ menu }) => (
   <List>
     {menu.map(({ id, onClick, disabled, label }) => (
       <ListItem key={id}>
