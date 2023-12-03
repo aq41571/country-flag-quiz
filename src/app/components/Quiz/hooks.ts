@@ -1,13 +1,7 @@
-import { LocalQuestion, useQuizStore } from '@/app/state'
-import { QuestionsQuery, useCheckAnswerLazyQuery, useQuestionsQuery } from '@/generated/graphql'
+import { useQuizStore } from '@/app/state'
+import { useCheckAnswerUsecase, useQuestionsUsecase } from '@/app/usecases/quiz/usecase'
 import { ApolloError } from '@apollo/client'
 import { useEffect } from 'react'
-
-const convertToQuestions = (data: QuestionsQuery | undefined): LocalQuestion[] =>
-  (data?.questions || []).map(({ question, options }) => ({
-    question: question.emoji,
-    options: (options || []).map(({ id, name }) => ({ id, name })),
-  }))
 
 interface UseQuestionsReturn {
   isLoading: boolean
@@ -16,23 +10,15 @@ interface UseQuestionsReturn {
 
 export const useQuestions = (): UseQuestionsReturn => {
   const { length, setQuestions, resetAnswers, resetQuestions } = useQuizStore()
-  const {
-    data,
-    loading,
-    error: err,
-  } = useQuestionsQuery({
-    variables: { limit: length ?? 1 },
-    skip: length === null,
-    fetchPolicy: 'network-only',
-  })
+  const { questions, loading, error: err } = useQuestionsUsecase(length ?? 1)
+  const { loading: isLoadingfetchCheckAnswer, error: errorFetchCheckAnswer } = useCheckAnswerUsecase()
   useEffect(() => {
-    setQuestions(convertToQuestions(data))
+    setQuestions(questions)
     return () => {
       resetAnswers()
       resetQuestions()
     }
-  }, [data, resetAnswers, resetQuestions, setQuestions])
-  const [, { loading: isLoadingfetchCheckAnswer, error: errorFetchCheckAnswer }] = useCheckAnswerLazyQuery()
+  }, [questions, resetAnswers, resetQuestions, setQuestions])
   const isLoading = loading || isLoadingfetchCheckAnswer
   const error = err || errorFetchCheckAnswer
   return { isLoading, error }
