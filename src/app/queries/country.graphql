@@ -23,14 +23,18 @@ fragment QuestionBody on QuestionBody {
   emoji
 }
 
+fragment Question on Question {
+  question {
+    ...QuestionBody
+  }
+  options {
+    ...Option
+  }
+}
+
 query questions($limit: Int!, $doneIds: [Int!]) {
   questions(limit: $limit, doneIds: $doneIds) {
-    question {
-      ...QuestionBody
-    }
-    options {
-      ...Option
-    }
+    ...Question
   }
 }
 
