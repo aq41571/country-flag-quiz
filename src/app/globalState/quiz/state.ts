@@ -1,10 +1,8 @@
-import { StateCreator, create } from 'zustand'
-import { devtools, persist } from 'zustand/middleware'
-import { LocalCountry } from './models/country/type'
-import { LocalQuestion } from './models/question/type'
+import { create } from 'zustand'
 
-const middlewares = <T>(f: StateCreator<T>, name: string) =>
-  devtools(persist(f, { name, skipHydration: process.env.NODE_ENV === 'development' }))
+import { LocalQuestion } from '@/app/models/question/type'
+import { LocalCountry } from '@/app/models/country/type'
+import { middlewares } from '../middlewares'
 
 interface QuizState {
   length: number | null

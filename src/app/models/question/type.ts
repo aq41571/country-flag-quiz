@@ -1,4 +1,4 @@
-interface LocalOption {
+export interface LocalOption {
   id: number
   name: string
 }
