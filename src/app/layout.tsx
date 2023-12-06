@@ -6,7 +6,6 @@ import { ApolloWrapper } from './ApolloWrapper'
 import { ThemeRegistry } from './ThemeRegistry/ThemeRegistry'
 import { roboto } from './ThemeRegistry/font'
 import { AppBar } from './components/AppBar/AppBar'
-import { Foundation } from './components/Foundation/Foundation'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -22,7 +21,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => (
       <ApolloWrapper>
         <ThemeRegistry>
           <AppBar />
-          <Foundation>{children}</Foundation>
+          {children}
         </ThemeRegistry>
       </ApolloWrapper>
     </body>
