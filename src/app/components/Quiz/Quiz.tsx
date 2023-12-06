@@ -1,22 +1,23 @@
 'use client'
 
-import { useQuizStore } from '@/app/state'
-import { Alert, Button, CircularProgress, Fade, LinearProgress, Typography } from '@mui/material'
+import { useQuizStore } from '@/app/globalState/quiz/state'
+import { Button, Fade, LinearProgress, Typography } from '@mui/material'
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2'
 import { useRouter } from 'next/navigation'
-import { FC } from 'react'
-import { OptionCard } from './OptionCard/OptionCard'
+import { FC, useEffect } from 'react'
+import { OptionButton } from './OptionButton/OptionButton'
 import { Result } from './Result/Result'
 import { useQuestions } from './hooks'
 
 export const Quiz: FC = () => {
-  const { length, questions, answers } = useQuizStore()
-  const { isLoading, error } = useQuestions()
+  const { length, questions, answers, resetAll } = useQuizStore()
+  useQuestions()
   const router = useRouter()
   const toMenu = () => router.push('/menu')
 
   const questionLength = questions.length
   const answerLength = answers.length
+  useEffect(() => () => resetAll(), [resetAll])
 
   return (
     <Fade in={length !== null} unmountOnExit mountOnEnter exit={false} timeout={500}>
@@ -31,8 +32,6 @@ export const Quiz: FC = () => {
             <Typography>{`${answerLength} / ${questionLength}`}</Typography>
           </Grid2>
         </Grid2>
-        {isLoading && <CircularProgress />}
-        {error && <Alert severity="error">{error && error.message}</Alert>}
         {questions.map(({ question, options }, i) => (
           <Fade key={question} in={answerLength === i} unmountOnExit mountOnEnter exit={false} timeout={500}>
             <Grid2 width="100%" textAlign="center">
@@ -40,7 +39,7 @@ export const Quiz: FC = () => {
               <Grid2 container xs={12} spacing={2}>
                 {options.map(({ id, name }) => (
                   <Grid2 key={id} xs={12}>
-                    <OptionCard id={id} question={question} option={name} />
+                    <OptionButton id={id} question={question} option={name} />
                   </Grid2>
                 ))}
               </Grid2>

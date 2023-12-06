@@ -1,4 +1,4 @@
-import { useQuizStore } from '@/app/state'
+import { useQuizStore } from '@/app/globalState/quiz/state'
 import {
   Paper,
   Table,

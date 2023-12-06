@@ -1,3 +1,4 @@
+import { useSetFetchState } from '@/app/hooks'
 import {
   CheckAnswerQuery,
   Exact,
@@ -19,6 +20,8 @@ type QuestionsRepositoryReturn = {
 export const useQuestionsRepository = (options: QuestionsOptions): QuestionsRepositoryReturn => {
   const questionsQuery = useQuestionsQuery(options)
   const questions = useMemo(() => convertQuestions(questionsQuery.data), [questionsQuery.data])
+  useSetFetchState(questionsQuery.loading, questionsQuery.error)
+
   return { ...questionsQuery, questions }
 }
 
@@ -40,5 +43,6 @@ export const useCheckAnswerRepository = () => {
     async (emoji: string, optionId: number) => fetchCheckAnswer(checkAnswerQuery, emoji, optionId),
     [checkAnswerQuery],
   )
+  useSetFetchState(loading, error)
   return { checkAnswerQuery, checkAnswer, loading, refetch, error }
 }

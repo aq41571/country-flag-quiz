@@ -1,6 +1,6 @@
 import { QuestionsOptions, useCheckAnswerRepository, useQuestionsRepository } from '@/app/repositories/quiz/repository'
 
-export const useQuestionsUsecase = (length: number) => {
+export const useQuestionsUsecase = (length: number | null) => {
   const options: QuestionsOptions = {
     variables: { limit: length ?? 1 },
     skip: length === null,

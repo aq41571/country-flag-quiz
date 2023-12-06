@@ -1,4 +1,4 @@
-import { useQuizStore } from '@/app/state'
+import { useQuizStore } from '@/app/globalState/quiz/state'
 import { useCheckAnswerUsecase, useQuestionsUsecase } from '@/app/usecases/quiz/usecase'
 import { ApolloError } from '@apollo/client'
 import { useEffect } from 'react'
@@ -10,7 +10,7 @@ interface UseQuestionsReturn {
 
 export const useQuestions = (): UseQuestionsReturn => {
   const { length, setQuestions, resetAnswers, resetQuestions } = useQuizStore()
-  const { questions, loading, error: err } = useQuestionsUsecase(length ?? 1)
+  const { questions, loading, error: err } = useQuestionsUsecase(length)
   const { loading: isLoadingfetchCheckAnswer, error: errorFetchCheckAnswer } = useCheckAnswerUsecase()
   useEffect(() => {
     setQuestions(questions)

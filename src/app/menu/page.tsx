@@ -1,16 +1,10 @@
 'use client'
 
-import { useEffect } from 'react'
 import { TitleWithMenu } from '../components/TitleWithMenu/TitleWithMenu'
-import { useMenu } from '../quiz/hooks'
-import { useQuizStore } from '../state'
+import { useMainMenu } from './hooks'
 
 const MenuPage = () => {
-  const { mainMenu } = useMenu()
-  const { resetAll } = useQuizStore()
-  useEffect(() => {
-    resetAll()
-  }, [resetAll])
+  const mainMenu = useMainMenu()
 
   return (
     <main>

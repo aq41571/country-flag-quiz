@@ -2,17 +2,17 @@
 
 import { Quiz } from '../components/Quiz/Quiz'
 import { TitleWithMenu } from '../components/TitleWithMenu/TitleWithMenu'
-import { useQuizStore } from '../state'
-import { useMenu } from './hooks'
+import { useQuizStore } from '../globalState/quiz/state'
+import { useQuestionLengthMenu } from './hooks'
 
 const QuizPage = () => {
   const { length } = useQuizStore()
-  const { questionLengthMenu } = useMenu()
+  const questionLengthMenu = useQuestionLengthMenu()
 
   return (
     <main>
       <TitleWithMenu show={length === null} title="Choose Questions" menu={questionLengthMenu} />
-      {length !== null && <Quiz />}
+      <Quiz />
     </main>
   )
 }
