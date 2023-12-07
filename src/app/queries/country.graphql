@@ -1,0 +1,56 @@
+fragment Continent on Continent {
+  name
+  code
+}
+
+fragment Country on Country {
+  id
+  code
+  name
+  emoji
+  phone
+  continent {
+    ...Continent
+  }
+}
+
+fragment Option on Option {
+  id
+  name
+}
+
+fragment QuestionBody on QuestionBody {
+  emoji
+}
+
+fragment Question on Question {
+  question {
+    ...QuestionBody
+  }
+  options {
+    ...Option
+  }
+}
+
+query questions($limit: Int!, $doneIds: [Int!]) {
+  questions(limit: $limit, doneIds: $doneIds) {
+    ...Question
+  }
+}
+
+query checkAnswer($quizEmoji: String!, $answerId: Int!) {
+  checkAnswer(quizEmoji: $quizEmoji, answerId: $answerId) {
+    correct {
+      ...Country
+    }
+    answer {
+      ...Country
+    }
+  }
+}
+
+query countries {
+  countries {
+    ...Country
+  }
+}

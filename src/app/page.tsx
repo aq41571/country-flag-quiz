@@ -1,79 +1,37 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import { Button, Typography } from '@mui/material'
+import Grid2 from '@mui/material/Unstable_Grid2/Grid2'
+import Link from 'next/link'
 
-export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image src="/vercel.svg" alt="Vercel Logo" className={styles.vercelLogo} width={100} height={24} priority />
-          </a>
-        </div>
-      </div>
+const Home = () => (
+  <main>
+    <Grid2 container justifyContent="center">
+      <Grid2 container m={2} maxWidth={800}>
+        <Grid2 xs={12}>
+          <Typography fontSize={120} textAlign="center">
+            🌎
+          </Typography>
+        </Grid2>
+        <Grid2 xs={12} my={4} container justifyContent="center">
+          <Typography variant="h3" component="h1" fontWeight={700}>
+            Welcome to the Flag Quiz!
+          </Typography>
+        </Grid2>
+        <Grid2 xs={12} container justifyContent="center">
+          <Typography>
+            Welcome to the Flag Quiz! Test your knowledge of world flags in this fun quiz. Identify countries and their
+            flags - it&rsquo;s time for flag-tastic fun!
+          </Typography>
+        </Grid2>
+        <Grid2 xs={12} my={4} container justifyContent="center">
+          <Link href="/menu" passHref style={{ width: '100%', maxWidth: 600 }}>
+            <Button variant="contained" fullWidth>
+              Dive In!
+            </Button>
+          </Link>
+        </Grid2>
+      </Grid2>
+    </Grid2>
+  </main>
+)
 
-      <div className={styles.center}>
-        <Image className={styles.logo} src="/next.svg" alt="Next.js Logo" width={180} height={37} priority />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>Instantly deploy your Next.js site to a shareable URL with Vercel.</p>
-        </a>
-      </div>
-    </main>
-  )
-}
+export default Home
