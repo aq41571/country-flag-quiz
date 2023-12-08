@@ -16,7 +16,8 @@
     "lint:ts-prune": "ts-prune -i '.next/|amplify/|src/generated'",
     "fix:eslint": "npm run lint:eslint -- --fix",
     "fix:prettier": "npm run lint:prettier -- --write",
-    "codegen": "gql-gen --watch"
+    "codegen": "gql-gen",
+    "codegen:watch": "gql-gen --watch"
   },
   "dependencies": {
     "@apollo/client": "^3.8.5",
