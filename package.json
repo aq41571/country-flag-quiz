@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "run-s codegen __build",
     "start": "next start",
     "test": "jest --watch",
     "test:ci": "jest --ci",
@@ -16,7 +16,9 @@
     "lint:ts-prune": "ts-prune -i '.next/|amplify/|src/generated'",
     "fix:eslint": "npm run lint:eslint -- --fix",
     "fix:prettier": "npm run lint:prettier -- --write",
-    "codegen": "gql-gen --watch"
+    "codegen:watch": "gql-gen --watch",
+    "codegen": "gql-gen",
+    "__build": "next build"
   },
   "dependencies": {
     "@apollo/client": "^3.8.5",
