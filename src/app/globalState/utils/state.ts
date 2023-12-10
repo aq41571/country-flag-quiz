@@ -23,19 +23,16 @@ interface UtilsAction {
 type UtilsStore = UtilsState & UtilsAction
 
 export const useUtilsStore = create<UtilsStore>()(
-  middlewares(
-    set => ({
-      loading: false,
-      error: null,
-      snackbar: {
-        open: false,
-        message: '',
-        severity: 'success' as SnackbarState['severity'],
-      },
-      setLoading: bool => set(() => ({ loading: bool })),
-      setSnackbar: (message, severity, open = true) => set(() => ({ snackbar: { open, message, severity } })),
-      hideSnackbar: () => set(() => ({ snackbar: { open: false, message: '', severity: 'success' } })),
-    }),
-    'utilsStore',
-  ),
+  middlewares(set => ({
+    loading: false,
+    error: null,
+    snackbar: {
+      open: false,
+      message: '',
+      severity: 'success' as SnackbarState['severity'],
+    },
+    setLoading: bool => set(() => ({ loading: bool })),
+    setSnackbar: (message, severity, open = true) => set(() => ({ snackbar: { open, message, severity } })),
+    hideSnackbar: () => set(() => ({ snackbar: { open: false, message: '', severity: 'success' } })),
+  })),
 )

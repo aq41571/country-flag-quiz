@@ -24,20 +24,17 @@ interface QuizAction {
 type QuizStore = QuizState & QuizAction
 
 export const useQuizStore = create<QuizStore>()(
-  middlewares(
-    set => ({
-      length: null,
-      questions: [],
-      answers: [],
-      corrects: [],
-      setLength: num => set(() => ({ length: num })),
-      setQuestions: (questions: LocalQuestion[]) => set(() => ({ questions })),
-      addAnswer: (answer: LocalCountry) => set(prev => ({ answers: [...prev.answers, answer] })),
-      addCorrent: (correct: LocalCountry) => set(prev => ({ corrects: [...prev.corrects, correct] })),
-      resetQuestions: () => set(() => ({ questions: [] })),
-      resetAnswers: () => set(() => ({ answers: [] })),
-      resetAll: () => set(() => ({ length: null, questions: [], answers: [], corrects: [] })),
-    }),
-    'quizStore',
-  ),
+  middlewares(set => ({
+    length: null,
+    questions: [],
+    answers: [],
+    corrects: [],
+    setLength: num => set(() => ({ length: num })),
+    setQuestions: (questions: LocalQuestion[]) => set(() => ({ questions })),
+    addAnswer: (answer: LocalCountry) => set(prev => ({ answers: [...prev.answers, answer] })),
+    addCorrent: (correct: LocalCountry) => set(prev => ({ corrects: [...prev.corrects, correct] })),
+    resetQuestions: () => set(() => ({ questions: [] })),
+    resetAnswers: () => set(() => ({ answers: [] })),
+    resetAll: () => set(() => ({ length: null, questions: [], answers: [], corrects: [] })),
+  })),
 )
