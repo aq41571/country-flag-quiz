@@ -11,6 +11,10 @@ Welcome to Country Flag Quiz, a web application built with Next.js that tests yo
 - **Flag Quiz:** Test your knowledge by identifying flags from different countries.
 - **Flag List:** Explore a comprehensive list of national flags for reference and learning purposes.
 
+## Preview
+
+- [https://main.d3oi4d7f6g0q3z.amplifyapp.com/](https://main.d3oi4d7f6g0q3z.amplifyapp.com/)
+
 ## Getting Started
 
 ### Prerequisites
