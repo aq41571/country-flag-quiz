@@ -7,6 +7,7 @@ import { ThemeRegistry } from './ThemeRegistry/ThemeRegistry'
 import { roboto } from './ThemeRegistry/font'
 import { AppBar } from './components/AppBar/AppBar'
 
+// ts-prune-ignore-next
 export const metadata: Metadata = {
   title: 'Country Flag Quiz',
   description:
@@ -33,4 +34,5 @@ const RootLayout = ({ children }: { children: ReactNode }) => (
   </html>
 )
 
+// ts-prune-ignore-next
 export default RootLayout
