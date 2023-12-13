@@ -19,7 +19,11 @@ test:
     test:
       commands:
         - npm run lint
-        - npm run test
+        - npm run test -- --coverage --coverageDirectory=coverage
+  artifacts:
+    baseDirectory: coverage
+    files:
+      - '**/*'
   cache:
     paths:
       - node_modules/**/*
