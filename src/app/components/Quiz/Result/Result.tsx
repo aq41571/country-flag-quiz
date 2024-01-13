@@ -42,9 +42,13 @@ export const Result: FC = () => {
           <Table sx={{ minWidth: 400 }}>
             <TableHead>
               <TableRow sx={{ '> th': { p: 1 } }}>
-                <TableCell>No.</TableCell>
-                <TableCell>Result</TableCell>
-                <TableCell>Correct</TableCell>
+                <TableCell align="right" width={60}>
+                  No.
+                </TableCell>
+                <TableCell align="center" width={100}>
+                  Result
+                </TableCell>
+                <TableCell width={200}>Correct</TableCell>
                 <TableCell>Your Answer</TableCell>
               </TableRow>
             </TableHead>
