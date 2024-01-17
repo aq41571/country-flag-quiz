@@ -11,10 +11,12 @@ import {
   Typography,
 } from '@mui/material'
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2'
-import { FC } from 'react'
+import { useRouter } from 'next/navigation'
+import { FC, useEffect } from 'react'
 
 export const Result: FC = () => {
   const { answers, corrects } = useQuizStore()
+  const router = useRouter()
   const results = answers.map((answer, i) => ({
     answer,
     correct: corrects[i],
@@ -22,6 +24,11 @@ export const Result: FC = () => {
   }))
   const correctLength = results.filter(({ isCorrect }) => isCorrect).length
   const incorrectLength = results.length - correctLength
+  useEffect(() => {
+    if (answers.length === 0) router.push('/menu')
+  }, [answers.length, router])
+
+  if (answers.length === 0) return null
   return (
     <Grid2 sx={{ width: '100%' }}>
       <Grid2 textAlign="center" my={2} sx={{ display: 'flex', justifyContent: 'center' }}>
@@ -48,7 +55,7 @@ export const Result: FC = () => {
                 Result
               </TableCell>
               <TableCell width={200}>Correct</TableCell>
-              <TableCell>Your Answer</TableCell>
+              <TableCell width={200}>Your Answer</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
