@@ -1,23 +1,23 @@
 'use client'
 
 import { useQuizStore } from '@/app/globalState/quiz/state'
-import { Button, Fade, LinearProgress, Typography } from '@mui/material'
+import { Fade, LinearProgress, Typography } from '@mui/material'
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2'
 import { useRouter } from 'next/navigation'
 import { FC, useEffect } from 'react'
+import { BackToMenuButton } from './BackToMenuButton/BackToMenuButton'
 import { OptionButton } from './OptionButton/OptionButton'
-import { Result } from './Result/Result'
 import { useQuestions } from './hooks'
 
 export const Quiz: FC = () => {
-  const { length, questions, answers, resetAll } = useQuizStore()
+  const { length, questions, answers } = useQuizStore()
   useQuestions()
   const router = useRouter()
-  const toMenu = () => router.push('/menu')
-
+  useEffect(() => {
+    if (answers.length === length) router.push('/quiz/result')
+  }, [answers, length, router])
   const questionLength = questions.length
   const answerLength = answers.length
-  useEffect(() => () => resetAll(), [resetAll])
 
   return (
     <Fade in={length !== null} unmountOnExit mountOnEnter exit={false} timeout={500}>
@@ -46,9 +46,8 @@ export const Quiz: FC = () => {
             </Grid2>
           </Fade>
         ))}
-        <Result />
         <Grid2 mt={2}>
-          <Button onClick={toMenu}>Back to Menu</Button>
+          <BackToMenuButton />
         </Grid2>
       </Grid2>
     </Fade>
