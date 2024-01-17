@@ -9,16 +9,13 @@ interface UseQuestionsReturn {
 }
 
 export const useQuestions = (): UseQuestionsReturn => {
-  const { length, setQuestions, resetAnswers, resetQuestions } = useQuizStore()
+  const { length, setQuestions, resetQuestions } = useQuizStore()
   const { questions, loading, error: err } = useQuestionsUsecase(length)
   const { loading: isLoadingfetchCheckAnswer, error: errorFetchCheckAnswer } = useCheckAnswerUsecase()
   useEffect(() => {
     setQuestions(questions)
-    return () => {
-      resetAnswers()
-      resetQuestions()
-    }
-  }, [questions, resetAnswers, resetQuestions, setQuestions])
+    return () => resetQuestions()
+  }, [questions, resetQuestions, setQuestions])
   const isLoading = loading || isLoadingfetchCheckAnswer
   const error = err || errorFetchCheckAnswer
   return { isLoading, error }

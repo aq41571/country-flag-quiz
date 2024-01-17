@@ -4,7 +4,8 @@ import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
 import { useCountriesUsecase } from '../usecases/country/usecase'
 
 const Flags = () => {
-  const { countries } = useCountriesUsecase()
+  const { countries, loading } = useCountriesUsecase()
+  if (loading) return null
   return (
     <TableContainer component={Paper} sx={{ maxHeight: '100%' }}>
       <Table stickyHeader>

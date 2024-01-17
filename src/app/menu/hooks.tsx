@@ -6,16 +6,21 @@ import QuizIcon from '@mui/icons-material/Quiz'
 import { useRouter } from 'next/navigation'
 
 import { Menu } from '../quiz/types'
+import { useQuizStore } from '../globalState/quiz/state'
 
 export const useMainMenu = () => {
   const router = useRouter()
+  const { resetAll } = useQuizStore()
 
   const mainMenu: Menu[] = [
     {
       id: 1,
       label: 'Start Quiz',
       icon: <QuizIcon />,
-      onClick: () => router.push('/quiz'),
+      onClick: () => {
+        resetAll()
+        router.push('/quiz')
+      },
     },
     { id: 2, label: 'View Score', icon: <GradeIcon />, disabled: true, onClick: () => ({}) },
     { id: 3, label: 'View Flag List', icon: <MenuBookIcon />, disabled: false, onClick: () => router.push('/flags') },
